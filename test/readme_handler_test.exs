@@ -22,14 +22,16 @@ defmodule Updater.ReadmeHandlerTest do
       ]
     end
 
+    @readmepath "test/fixtures/Readme.md"
+
     test "replace_activity" do
-      content = File.read!("../Readme.md")
+      content = File.read!(@readmepath)
       projects = projects()
       assert ReadmeHandler.replace_activity(projects, content)
     end
 
     test "replace_projects" do
-      content = File.read!("../Readme.md")
+      content = File.read!(@readmepath)
       projects = projects()
       assert ReadmeHandler.replace_projects(projects, content)
     end
