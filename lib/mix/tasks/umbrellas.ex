@@ -3,6 +3,7 @@ defmodule Mix.Tasks.Umbrellas do
 
   @shortdoc "Shows which of cloned repos could be an umbrella project"
   def run(_) do
+    Application.ensure_all_started(:updater)
     IO.puts("Grep-ing for umbrellas, please stay patient...")
 
     umbrellas =

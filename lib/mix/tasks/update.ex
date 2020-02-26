@@ -3,6 +3,7 @@ defmodule Mix.Tasks.Update do
 
   @shortdoc "Runs the Updater.run/0 function"
   def run(_) do
+    Application.ensure_all_started(:updater)
     IO.puts("**************** Updating local repos...")
     Updater.Sorter.sort()
     Updater.run()
