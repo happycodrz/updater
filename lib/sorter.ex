@@ -1,5 +1,6 @@
 defmodule Updater.Sorter do
   alias Updater.Config
+
   def sort() do
     sort(Config.urls_file())
   end

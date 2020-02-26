@@ -117,13 +117,15 @@ defmodule Updater.Crawler do
   end
 
   defp cleantoint(""), do: 0
+
   defp cleantoint(v) when is_binary(v) do
     cond do
       String.contains?(v, "k") ->
-          res = String.replace(v, "k", "") |> String.to_float()
-          res * 1000
+        res = String.replace(v, "k", "") |> String.to_float()
+        res * 1000
+
       true ->
-          String.to_integer(v)
+        String.to_integer(v)
     end
   end
 end

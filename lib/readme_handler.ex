@@ -1,5 +1,6 @@
 defmodule Updater.ReadmeHandler do
   alias Updater.Config
+
   def replace_umbrellas!(umbrellas) do
     content = File.read!(readme_file())
     new_content = replace_umbrellas(umbrellas, content)

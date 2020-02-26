@@ -1,5 +1,6 @@
 defmodule Updater.DataParser do
   alias Updater.Config
+
   def parse do
     parse(Config.urls_file())
   end
