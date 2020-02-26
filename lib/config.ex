@@ -16,6 +16,6 @@ defmodule Updater.Config do
   end
 
   defp env_root do
-    Application.get_env(:updater, :root) || raise "UPDATER_ROOT env not set!"
+    System.get_env("UPDATER_ROOT") || raise "UPDATER_ROOT env not set!"
   end
 end

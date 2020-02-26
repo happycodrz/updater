@@ -24,7 +24,6 @@ defmodule Updater.MixProject do
       {:flexi, "~> 0.3"},
       {:floki, "~> 0.20.0"},
       {:tesla, "~> 1.0.0"},
-      {:deferred_config, "~> 0.1.0"},
       {:mockery, "~> 2.2.0", runtime: false}
     ]
   end

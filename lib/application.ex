@@ -6,8 +6,6 @@ defmodule Updater.Application do
   def start(_type, _args) do
     children = []
 
-    DeferredConfig.populate(:updater)
-
     opts = [strategy: :one_for_one, name: Updater.Supervisor]
     Supervisor.start_link(children, opts)
   end
