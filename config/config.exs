@@ -2,4 +2,4 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
-config :updater, root: System.get_env("UPDATER_PATH", Path.expand("../"))
+config :updater, root: {:system, "UPDATER_ROOT"}

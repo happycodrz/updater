@@ -1,6 +1,6 @@
 defmodule Updater.Config do
   def root do
-    Application.get_env(:updater, :root)
+    Path.expand(env_root())
   end
 
   def srcfolder do
@@ -13,5 +13,9 @@ defmodule Updater.Config do
 
   def readme_file do
     Path.join([root(), "Readme.md"])
+  end
+
+  defp env_root do
+    Application.get_env(:updater, :root) || raise "UPDATER_ROOT env not set!"
   end
 end
