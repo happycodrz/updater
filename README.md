@@ -24,18 +24,20 @@ $ vim ex/mix.exs
 ...
   {:updater, github: "happycodrz/updater"}
 
+$ pushd ex ; mix deps.get ; mix compile ; popd
 
-# configure Makefile
+# configure Makefile (please make sure to use TABs for indentation!)
 $ vim Makefile
 
 update_jsonlibs:
   export UPDATER_ROOT=$$(pwd)/jsonlibs; cd ex && mix update
 
 # setup folder structure
-$ mkdir jsonlibs
 
-$ mkdir jsonlibs/data
+$ mkdir -p jsonlibs/data
 $ echo "https://github.com/michalmuskala/jason [] A blazing fast JSON parser and generator in pure Elixir." > jsonlibs/data/urls.txt
+
+# create update-able Readme, example here: https://raw.githubusercontent.com/happycodrz/updater/master/test/fixtures/Readme.md
 $ touch jsonlibs/Readme.md
 
 # run updater
