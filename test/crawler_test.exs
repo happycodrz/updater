@@ -31,7 +31,7 @@ defmodule Updater.CrawlerTest do
   end
 
   test "lastcommit - included" do
-    {:ok, body} = fixture("rails.html")
+    {:ok, body} = fixture("rails_rails.html")
     assert Crawler.lastcommit(body) == "2018-06-20T12:52:09Z"
   end
 
