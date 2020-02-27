@@ -76,7 +76,7 @@ defmodule Updater.Crawler do
 
   defp extract_included_lastcommit(body) do
     body
-    |> Floki.find(".commit-tease relative-time")
+    |> Floki.find("[itemprop='dateModified'] relative-time")
     |> Floki.attribute("datetime")
     |> Enum.at(0)
   end

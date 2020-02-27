@@ -32,12 +32,12 @@ defmodule Updater.CrawlerTest do
 
   test "lastcommit - included" do
     {:ok, body} = fixture("rails_rails.html")
-    assert Crawler.lastcommit(body) == "2018-06-20T12:52:09Z"
+    assert Crawler.lastcommit(body) == "2020-02-27T13:15:07Z"
   end
 
   test "lastcommit - ajax loaded" do
     {:ok, body} = fixture("rails-86e42b53662f535ee484630144e27ee684e8e8dc.html")
-    assert Crawler.lastcommit(body) == "2018-06-06T17:17:53Z"
+    assert Crawler.lastcommit(body) == "2017-11-06T10:51:18Z"
   end
 
   test "stars" do
