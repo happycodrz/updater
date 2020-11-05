@@ -9,7 +9,7 @@ defmodule Updater.Crawler do
   end
 
   def github_stats(repo) do
-    IO.puts("getting #{repo}")
+    IO.puts("REQ: #{repo}")
 
     with {:ok, response} <- Github.get(repo) do
       body =
@@ -71,12 +71,12 @@ defmodule Updater.Crawler do
   end
 
   defp lastcommit_included?(body) do
-    body |> Floki.find(".commit-loader") == []
+    Floki.find(body, "relative-time") != []
   end
 
   defp extract_included_lastcommit(body) do
     body
-    |> Floki.find("[itemprop='dateModified'] relative-time")
+    |> Floki.find("relative-time")
     |> Floki.attribute("datetime")
     |> Enum.at(0)
   end
@@ -84,19 +84,23 @@ defmodule Updater.Crawler do
   def get_lastcommit_ajax(body) do
     path =
       body
-      |> Floki.find("include-fragment.commit-loader")
+      |> Floki.find(".Box-header .js-details-container.Details")
+      |> Floki.find("include-fragment")
       |> Floki.attribute("src")
       |> Enum.at(0)
 
     # this feels dirty...
     url = "https://github.com/" <> path
+
+    IO.puts("AJAX: #{url}")
     {:ok, doc} = Github.get(url)
     lastcommit(doc.body)
   end
 
   def commitscount(body) do
     body
-    |> Floki.find(".numbers-summary .commits .num")
+    # quite fragile...
+    |> Floki.find(".js-details-container strong")
     |> Floki.text()
     |> cleannumber_from_text
   end
