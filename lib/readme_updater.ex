@@ -8,7 +8,7 @@ defmodule Updater.ReadmeUpdater do
   def run(urls) do
     stats_collection =
       urls
-      |> Parallel.run(20, fn url -> Updater.Crawler.stats(url) end)
+      |> Parallel.run(10, fn url -> Updater.Crawler.stats(url) end)
       |> Enum.map(fn {_url, stats} -> stats end)
 
     Updater.ReadmeHandler.replace_activity!(stats_collection)
