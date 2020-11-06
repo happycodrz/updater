@@ -6,9 +6,8 @@ defmodule Mix.Tasks.Umbrellas do
     Application.ensure_all_started(:updater)
     IO.puts("Grep-ing for umbrellas, please stay patient...")
 
-    umbrellas =
-      UmbrellaFinder.run()
-      |> IO.inspect()
-      |> Updater.ReadmeHandler.replace_umbrellas!()
+    UmbrellaFinder.run()
+    |> IO.inspect()
+    |> Updater.ReadmeHandler.replace_umbrellas!()
   end
 end
