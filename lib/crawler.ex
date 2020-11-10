@@ -23,10 +23,15 @@ defmodule Updater.Crawler do
             IO.puts("**** MOVED #{repo}")
             raise ""
 
+          response.status == 429 ->
+            IO.puts("*** RATELIMIT HIT for #{repo}! ***")
+            raise ""
+
           is_binary(response.body) ->
             response.body |> Floki.parse()
 
           true ->
+            IO.inspect(response)
             response.body
         end
 
@@ -92,7 +97,7 @@ defmodule Updater.Crawler do
     # this feels dirty...
     url = "https://github.com/" <> path
 
-    IO.puts("AJAX: #{url}")
+    IO.puts("AJX: #{url}")
     {:ok, doc} = Github.get(url)
     lastcommit(doc.body)
   end
