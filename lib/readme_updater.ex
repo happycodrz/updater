@@ -4,13 +4,17 @@ defmodule Updater.ReadmeUpdater do
   def run() do
     DataParser.parse() |> Enum.map(fn {a, _, _} -> a end) |> run
   end
+  @parallelruns 3
+  @sleepduration 500
+
 
   def run(urls) do
+    IO.puts "### READMEUPDATER OPTS: PARALLEL: #{@parallelruns} SLEEP: #{@sleepduration}"
     stats_collection =
       urls
-      |> Parallel.run(10, fn url ->
+      |> Parallel.run(@parallelruns, fn url ->
         res = Updater.Crawler.stats(url)
-        :timer.sleep(500)
+        :timer.sleep(@sleepduration)
         res
       end)
       |> Enum.map(fn {_url, stats} -> stats end)
