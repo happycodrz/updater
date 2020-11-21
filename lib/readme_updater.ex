@@ -4,8 +4,8 @@ defmodule Updater.ReadmeUpdater do
   def run() do
     DataParser.parse() |> Enum.map(fn {a, _, _} -> a end) |> run
   end
-  @parallelruns 3
-  @sleepduration 500
+  @parallelruns 2
+  @sleepduration 1000
 
 
   def run(urls) do
