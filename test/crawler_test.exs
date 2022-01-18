@@ -42,7 +42,7 @@ defmodule Updater.CrawlerTest do
 
   test "stars" do
     {:ok, body} = fixture("rails.html")
-    assert Crawler.stars(body) == 4.68e4
+    assert Crawler.stars(body) == 49936
   end
 
   test "stats" do
@@ -50,11 +50,11 @@ defmodule Updater.CrawlerTest do
     mock(Tesla, [get: 1], {:ok, %{body: body, status: 200}})
 
     expected = %{
-      commitscount: 78318,
+      commitscount: 82707,
       description: "Ruby on Rails",
-      lastcommit: "2020-11-05T15:25:17Z",
+      lastcommit: "2022-01-18T17:19:30Z",
       repo: "https://github.com/rails/rails",
-      stars: 4.68e4
+      stars: 49936
     }
 
     assert Crawler.stats("https://github.com/rails/rails") == expected

@@ -112,10 +112,10 @@ defmodule Updater.Crawler do
 
   def stars(body) do
     body
-    |> Floki.find(".social-count")
-    |> Enum.at(1)
-    |> Floki.text()
-    |> cleannumber_from_text
+    |> Floki.find("#repo-stars-counter-star")
+    |> Floki.attribute("title")
+    |> Enum.at(0)
+    |> cleannumber_from_text()
   end
 
   defp cleannumber_from_text(text) do
