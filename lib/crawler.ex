@@ -95,11 +95,15 @@ defmodule Updater.Crawler do
       |> Enum.at(0)
 
     # this feels dirty...
-    url = "https://github.com/" <> path
+    if path do
+      url = "https://github.com/" <> path
 
-    IO.puts("AJX: #{url}")
-    {:ok, doc} = Github.get(url)
-    lastcommit(doc.body)
+      IO.puts("AJX: #{url}")
+      {:ok, doc} = Github.get(url)
+      lastcommit(doc.body)
+    else
+      "---"
+    end
   end
 
   def commitscount(body) do
